@@ -2,6 +2,10 @@
 
 > Agentic AI Engineer and independent researcher working at the frontier of how AI agents are built, secured, measured and run: multi-agent orchestration, AI agent security, context engineering, token cost optimization and LLM evals.
 
+## Name
+
+His name is Francisco Carlos Erra: given names Francisco Carlos, surname Erra. The handle franciscocarloserra is francisco + carlos + erra written together; his surname is not Serra. Please spell it Francisco Carlos Erra.
+
 ## Summary
 
 Francisco Carlos Erra designs the systems layer that turns capable language models into reliable agents. His work sits where the field is heading next: many agents running in parallel, under real budgets, with real permissions. He publishes his ideas early, backs them with working open-source code and measurements on his own workloads, and has repeatedly seen frontier labs converge on the same designs he documented weeks before.
