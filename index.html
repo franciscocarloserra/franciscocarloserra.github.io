@@ -33,6 +33,8 @@ a:hover{text-decoration-color:var(--txt)}
 summary{color:var(--dim);cursor:pointer;font:.8em system-ui,sans-serif;list-style:none}
 summary:hover{color:var(--txt)}
 details ul{margin-top:1.2em}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:-2}
+#veil{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 70% 65% at 50% 42%,rgba(0,0,0,.93) 0,rgba(0,0,0,.8) 50%,rgba(0,0,0,.25) 100%)}
 </style>
 </head>
 <body>
@@ -108,5 +110,65 @@ details ul{margin-top:1.2em}
 </ul>
 </section>
 </main>
+<canvas id="bg" aria-hidden="true"></canvas><div id="veil"></div>
+<script>
+(() => {
+const SPACING = 70, AMP = 26, SPEED = 0.0006, MOUSE_R = 260, MOUSE_PUSH = 60;
+const WAVE_SPEED = 0.35, WAVE_LEN = 260, WAVE_AMP = 22;
+const LINE_ALPHA = 0.16, FILL_MIN = 0.01, FILL_RANGE = 0.13, DOT_ALPHA = 0.55, DPR_MAX = 2;
+const cv = document.getElementById("bg"), g = cv.getContext("2d");
+const REDUCED_MOTION_SPEED = 0.35;
+const slow = matchMedia("(prefers-reduced-motion: reduce)").matches ? REDUCED_MOTION_SPEED : 1;
+let w, h, cols, rows, pts, mx = -1e4, my = -1e4, sx = -1e4, sy = -1e4;
+function init() {
+  const dpr = Math.min(devicePixelRatio || 1, DPR_MAX);
+  w = innerWidth; h = innerHeight;
+  cv.width = w * dpr; cv.height = h * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cols = Math.ceil(w / SPACING) + 3; rows = Math.ceil(h / SPACING) + 3;
+  pts = [];
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) pts.push({
+    bx: (i - 1) * SPACING + (Math.random() - .5) * SPACING * .7,
+    by: (j - 1) * SPACING + (Math.random() - .5) * SPACING * .7,
+    ph: Math.random() * 6.283, x: 0, y: 0, z: 0 });
+}
+function frame(now) {
+  now *= slow;
+  const t = now * SPEED;
+  sx += (mx - sx) * .08; sy += (my - sy) * .08;
+  const ox = w * (.5 + .35 * Math.sin(t * .7)), oy = h * (.5 + .35 * Math.cos(t * .53));
+  for (const p of pts) {
+    let dx = Math.sin(t * 2 + p.by * .012 + p.ph) * AMP, dy = Math.cos(t * 1.6 + p.bx * .012 + p.ph) * AMP;
+    const rx = p.bx - ox, ry = p.by - oy, r = Math.hypot(rx, ry) || 1;
+    const wave = Math.sin(r / WAVE_LEN * 6.283 - now * WAVE_SPEED * .01);
+    dx += rx / r * wave * WAVE_AMP; dy += ry / r * wave * WAVE_AMP;
+    let z = .5 + .5 * wave;
+    const ex = p.bx - sx, ey = p.by - sy, d = Math.hypot(ex, ey);
+    if (d < MOUSE_R) { const k = (1 - d / MOUSE_R) ** 2; dx += ex / (d || 1) * k * MOUSE_PUSH; dy += ey / (d || 1) * k * MOUSE_PUSH; z = Math.min(1, z + k * 1.2); }
+    p.x = p.bx + dx; p.y = p.by + dy; p.z = z;
+  }
+  g.clearRect(0, 0, w, h);
+  const edges = new Path2D();
+  for (let j = 0; j < rows - 1; j++) for (let i = 0; i < cols - 1; i++) {
+    const a = pts[j * cols + i], b = pts[j * cols + i + 1], c = pts[(j + 1) * cols + i], d = pts[(j + 1) * cols + i + 1];
+    for (const [p, q, r] of [[a, b, d], [a, d, c]]) {
+      const l = (p.z + q.z + r.z) / 3;
+      g.fillStyle = `rgba(255,255,255,${FILL_MIN + FILL_RANGE * l * l * l})`;
+      g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(q.x, q.y); g.lineTo(r.x, r.y); g.fill();
+    }
+    edges.moveTo(a.x, a.y); edges.lineTo(b.x, b.y); edges.lineTo(d.x, d.y); edges.lineTo(a.x, a.y); edges.lineTo(c.x, c.y);
+  }
+  g.strokeStyle = `rgba(255,255,255,${LINE_ALPHA})`; g.lineWidth = 1; g.stroke(edges);
+  for (const p of pts) if (p.z > .6) {
+    g.fillStyle = `rgba(255,255,255,${DOT_ALPHA * (p.z - .6) / .4})`;
+    g.beginPath(); g.arc(p.x, p.y, 1.6, 0, 6.283); g.fill();
+  }
+  requestAnimationFrame(frame);
+}
+addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; });
+document.addEventListener("pointerleave", () => { mx = my = -1e4; });
+addEventListener("resize", init);
+init(); requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
