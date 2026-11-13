@@ -1,0 +1,57 @@
+# Francisco Carlos Erra
+
+> Agentic AI Engineer and independent researcher: multi-agent orchestration, AI agent security, context engineering, token cost optimization and LLM evals.
+
+Agentic AI engineer and independent researcher building the infrastructure that makes AI agents safe, efficient and measurable at scale.
+
+My work spans multi-agent orchestration, swarm security engineering, context engineering and token cost optimization for coding agents like Claude Code and Codex. I wrote Swarm Security Engineering, a threat model and control framework for parallel LLM agent swarms, and created OpenTokenMini, a free open-source tool that shows where your AI agents' tokens actually go.
+
+I also build open models and local AI tooling: ttslibre, an open recipe for a sub-100M text-to-speech model; Triton kernels that simulate the full fly connectome 4.9x faster than torch.sparse; and evals that measure how far models drift from their goals and scope.
+
+- GitHub: https://github.com/franciscocarloserra
+- LinkedIn: https://www.linkedin.com/in/francisco-carlos-erra/
+- X: https://x.com/francarloerra
+- OpenTokenMini: https://opentokenmini.org/
+
+## Tools
+
+- [ttslibre](https://github.com/franciscocarloserra/ttslibre): Small, fast, free: an open recipe for a sub-100M TTS. Code, data, weights. The PoC trained to a working model in a few hours on one RTX 3090, and inspired a wave of open-weights TTS releases.
+- [kokoro-voicelab](https://github.com/franciscocarloserra/kokoro-voicelab): 17 new voices for Kokoro-82M TTS + 269 labeled knobs and a one-click lab to make your own. No retraining, no GPU.
+- [supertonic-voicelab](https://github.com/franciscocarloserra/supertonic-voicelab): 40 new voices for Supertonic-3 TTS + labeled, bounded sliders to make your own. No retraining, no GPU.
+- [agent-voice-kit](https://github.com/franciscocarloserra/agent-voice-kit): A local Whisper and Supertonic loop to talk with your agents
+- [mp3tomidi](https://franciscocarloserra.github.io/mp3tomidi/): Audio in, MIDI out. MuScriptor + htdemucs in a web panel.
+- [p2p-filedrop](https://franciscocarloserra.github.io/p2p-filedrop/): Send files and chat directly between browsers, using a link
+- [p2p-call](https://franciscocarloserra.github.io/p2p-call/): Like meets/zoom but browser-to-browser p2p in a couple of files
+- [p2p-board](https://franciscocarloserra.github.io/p2p-board/): An ultraminimal trystero browser-based p2p chat
+- [claude-code-multiharness-delegation](https://github.com/franciscocarloserra/claude-code-multiharness-delegation): Claude Code mod: delegate subtasks to Codex, Antigravity, opencode or a local model, each running interactively in tmux
+- [claude-code-autonudge](https://github.com/franciscocarloserra/claude-code-autonudge): Claude Code plugin: when the agent idles short of its goal, jev decides whether to nudge it to keep going
+- [claude-code-context-debloat-mod](https://github.com/franciscocarloserra/claude-code-context-debloat-mod): Single-file Claude Code mod that trims the base context a new session sends (highly experimental)
+- [hf-top-models](https://franciscocarloserra.github.io/hf-top-models/): The 300 most-liked Hugging Face models of the last year in a sortable table and charts
+- [hf-top-datasets](https://franciscocarloserra.github.io/hf-top-datasets/): The most-liked datasets on Hugging Face in a sortable table
+
+## Experiments
+
+- [fasterfly](https://github.com/franciscocarloserra/fasterfly): Event-driven Triton LIF kernels for the full MaleCNS fly connectome: 4.9x faster than torch.sparse, 72x batched
+- [land-or-water](https://github.com/franciscocarloserra/land-or-water): What does a language model think the Earth looks like?
+- [qwen-dictionary](https://franciscocarloserra.github.io/qwen-dictionary/): A dictionary of the English language written (and illustrated) by Qwen 3.5 0.8B
+- [cutoff-bench](https://franciscocarloserra.github.io/cutoff-bench/): Ask LLMs their knowledge cutoff, then compare it with the newest model they actually remember
+- [3d-model-weights](https://franciscocarloserra.github.io/3d-model-weights/): The weight matrices of the most-liked Hugging Face models, in 3D
+- [toy-local-multi-agent-swarm](https://github.com/franciscocarloserra/toy-local-multi-agent-swarm): Experiment: Watch a swarm of LLM agents run on your own machine, explore different swarm topologies, and nudge or redirect any agent in real time.
+- [jev-attack-surface-analysis](https://franciscocarloserra.github.io/jev-attack-surface-analysis/): PoC/Reference: Attack surface heatmap of a Python or JS Ts codebase, ranked top-down by the jev classifier on a fixed budget
+
+## Games
+
+- [p2p-go](https://franciscocarloserra.github.io/p2p-go/): Go for two (7x7 to 19x19) or vs bot, browser to browser over WebRTC. No server.
+- [p2p-burako](https://franciscocarloserra.github.io/p2p-burako/): Two-player (or 2v2 with bots) tile Burako, browser to browser over WebRTC. No server.
+- [p2p-mancala](https://franciscocarloserra.github.io/p2p-mancala/): Two-player Mancala, browser to browser over WebRTC. No server.
+- [pelican-bmx](https://franciscocarloserra.github.io/pelican-bmx/): The "pelican riding a bicycle" benchmark taken way too literally: ride a 3D BMX park, do tailwhips and grind rails (three.js)
+- [llm-sandbox](https://github.com/franciscocarloserra/llm-sandbox): Talk to a tiny sassy robot and she builds your voxel world. Fully local: Gemma 4 + Whisper + Supertonic.
+- [defensa-1807](https://franciscocarloserra.github.io/defensa-1807/): Prototipo de estrategia por turnos: Defensa de Buenos Aires, 1807
+- [asciiplanet](https://franciscocarloserra.github.io/asciiplanet/): A weird anonymous ASCII-based 3D Planet chat [SERVER IS DOWN]
+
+## Articles
+
+- [open-swarm-security](https://franciscocarloserra.github.io/open-swarm-security/): Interactive article on keeping swarms of parallel LLM agents in scope: UX, architecture, threat model, controls
+- [emulacion-integral-del-cerebro](https://github.com/franciscocarloserra/emulacion-integral-del-cerebro): Traducción al español de Whole Brain Emulation: A Roadmap, de Anders Sandberg y Nick Bostrom
+- [vestidito](https://franciscocarloserra.github.io/vestidito/): Learn to draft a dress base pattern: flat pattern + 3D dress form with skirt drape (three.js)
+- [learn-synth](https://franciscocarloserra.github.io/learn-synth/): Learn synth fundamentals by listening and exploring interactive controls
