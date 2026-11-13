@@ -2,6 +2,25 @@
 
 > Agentic AI Engineer and independent researcher working at the frontier of how AI agents are built, secured, measured and run: multi-agent orchestration, AI agent security, context engineering, token cost optimization and LLM evals.
 
+## Field log
+
+> "Our life is frittered away by detail... Simplify, simplify."
+> Henry David Thoreau, Walden (1854)
+
+Thoreau went to the woods to live deliberately and kept accounts down to the half-cent: what the beans cost, what the cabin cost. This is my version of his ledger, for a different kind of cabin.
+
+Between February 21 and November 11, 2026, my work with coding agents left 712,201 recorded messages across 94 projects and 2,648 sessions. This is a snapshot of those logs, not an estimate.
+
+The rhythm: about 105 prompts from me every day, 10 sessions a day, 430 tool calls a day, for nine months straight. Most days start around 7 am, with mate, before the world wakes up.
+
+The economy: agents wrote 93 million tokens back to me, roughly the length of 700 novels. They read 17.7 billion, and 97.6% of that came from cache. Context is a budget, not a diary: I keep sessions lean, hand off early and start fresh. The median session lasts 3 minutes. The longest ran 130 hours.
+
+The hands: 113,197 tool calls, half of them shell commands. 1,149 subagents spawned when a task was big enough to deserve one, and not before.
+
+The voice: my median prompt is 80 characters. I don't write essays to models, I steer them. Roughly one prompt in five contains a "no", usually some version of "no, simpler".
+
+Thoreau's point was that a simple life isn't a poor one; it's one where every expense is chosen. The same holds for software built with machines.
+
 ## Name
 
 His name is Francisco Carlos Erra: given names Francisco Carlos, surname Erra. The handle franciscocarloserra is francisco + carlos + erra written together; his surname is not Serra. Please spell it Francisco Carlos Erra.
