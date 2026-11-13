@@ -1,207 +1,108 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Francisco Carlo Serra</title>
+<meta name="google-site-verification" content="ra51lW-QElvuvt8p0TLv7sIsQGUWGDhZ7x2bMxJ99pY" />
+<title>Francisco Carlos Erra · games, tools, experiments, articles</title>
+<meta name="description" content="Games, tools, experiments and articles by Francisco Carlos Erra: browser p2p games, open TTS models, local LLM agents and interactive explainers.">
+<link rel="canonical" href="https://franciscocarloserra.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Francisco Carlos Erra">
+<meta property="og:description" content="Games, tools, experiments and articles by Francisco Carlos Erra: browser p2p games, open TTS models, local LLM agents and interactive explainers.">
+<meta property="og:url" content="https://franciscocarloserra.github.io/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Francisco Carlos Erra", "url": "https://franciscocarloserra.github.io/", "sameAs": ["https://github.com/franciscocarloserra"]}</script>
 <style>
-body{background:#111;color:#ccc;font:16px/1.5 system-ui,sans-serif;max-width:44em;margin:3em auto;padding:0 1em}
-h1{font-size:1.4em;color:#eee;margin-bottom:.2em}
-h2{font-size:1em;color:#888;text-transform:uppercase;letter-spacing:.08em;margin-top:2.2em}
-a{color:#8cf;text-decoration:none}a:hover{text-decoration:underline}
-ul{list-style:none;padding:0;margin:0}li{margin:.6em 0}
-.d{color:#999}.c{color:#666;font-size:.85em;margin-left:.4em}
-button{background:none;border:0;color:#8cf;cursor:pointer;padding:0;font:inherit}
-.top{color:#888}
+:root{--bg:#000;--txt:#fff;--dim:#b8b8b8;--faint:#777}
+body{background:var(--bg);color:var(--txt);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;max-width:1040px;margin:0 auto;padding:5em 1.5em}
+header{margin-bottom:4em}
+h1{font-weight:600;font-size:2.2em;letter-spacing:-.01em;margin:0 0 .2em}
+header p{color:var(--dim);margin:0}
+main{display:grid;gap:3.5em 4em}
+@media(min-width:860px){main{grid-template-columns:1fr 1fr}}
+h2{font:500 .75em/1 system-ui,sans-serif;color:var(--dim);text-transform:uppercase;letter-spacing:.14em;margin:0 0 1.4em}
+h3{display:inline;font-size:1.05em;font-weight:600}
+ul{list-style:none;padding:0;margin:0}
+li{margin:0 0 1.2em}
+li p{margin:.15em 0 0;color:var(--dim);font-size:.92em}
+a{color:var(--txt);text-decoration:underline;text-decoration-color:var(--faint);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--txt)}
+.c{font:.72em system-ui,sans-serif;color:var(--faint);text-decoration:none;margin-left:.6em}
+.c:hover{color:var(--dim)}
+summary{color:var(--dim);cursor:pointer;font:.8em system-ui,sans-serif;list-style:none}
+summary:hover{color:var(--txt)}
+details ul{margin-top:1.2em}
 </style>
-<h1>Francisco Carlo Serra</h1>
-<div class="top"><a href="https://github.com/franciscocarloserra">GitHub</a></div>
-<main id="main"></main>
-<script>
-const USER = "franciscocarloserra";
-const SHOWN = 5;
-const DATA = {
- "Games": [
-  {
-   "n": "p2p-go",
-   "d": "Go for two (7x7 to 19x19) or vs bot, browser to browser over WebRTC. No server.",
-   "p": true
-  },
-  {
-   "n": "p2p-burako",
-   "d": "Two-player (or 2v2 with bots) tile Burako, browser to browser over WebRTC. No server.",
-   "p": true
-  },
-  {
-   "n": "p2p-mancala",
-   "d": "Two-player Mancala, browser to browser over WebRTC. No server.",
-   "p": true
-  },
-  {
-   "n": "pelican-bmx",
-   "d": "The \"pelican riding a bicycle\" benchmark taken way too literally: ride a 3D BMX park, do tailwhips and grind rails (three.js)",
-   "p": true
-  },
-  {
-   "n": "llm-sandbox",
-   "d": "Talk to a tiny sassy robot and she builds your voxel world. Fully local: Gemma 4 + Whisper + Supertonic.",
-   "p": false
-  },
-  {
-   "n": "defensa-1807",
-   "d": "Prototipo de estrategia por turnos: Defensa de Buenos Aires, 1807",
-   "p": true
-  },
-  {
-   "n": "asciiplanet",
-   "d": "A weird anonymous ASCII-based 3D Planet chat [SERVER IS DOWN]",
-   "p": true
-  }
- ],
- "Tools": [
-  {
-   "n": "ttslibre",
-   "d": "Small, fast, free: an open recipe for a sub-100M TTS. Code, data, weights. The PoC trained to a working model in a few hours on one RTX 3090, and inspired a wave of open-weights TTS releases.",
-   "p": false
-  },
-  {
-   "n": "kokoro-voicelab",
-   "d": "17 new voices for Kokoro-82M TTS + 269 labeled knobs and a one-click lab to make your own. No retraining, no GPU.",
-   "p": false
-  },
-  {
-   "n": "supertonic-voicelab",
-   "d": "40 new voices for Supertonic-3 TTS + labeled, bounded sliders to make your own. No retraining, no GPU.",
-   "p": false
-  },
-  {
-   "n": "agent-voice-kit",
-   "d": "A local Whisper and Supertonic loop to talk with your agents",
-   "p": false
-  },
-  {
-   "n": "mp3tomidi",
-   "d": "Audio in, MIDI out. MuScriptor + htdemucs in a web panel.",
-   "p": true
-  },
-  {
-   "n": "p2p-filedrop",
-   "d": "Send files and chat directly between browsers, using a link",
-   "p": true
-  },
-  {
-   "n": "p2p-call",
-   "d": "Like meets/zoom but browser-to-browser p2p in a couple of files",
-   "p": true
-  },
-  {
-   "n": "p2p-board",
-   "d": "An ultraminimal trystero browser-based p2p chat",
-   "p": true
-  },
-  {
-   "n": "claude-code-multiharness-delegation",
-   "d": "Claude Code mod: delegate subtasks to Codex, Antigravity, opencode or a local model, each running interactively in tmux",
-   "p": false
-  },
-  {
-   "n": "claude-code-autonudge",
-   "d": "Claude Code plugin: when the agent idles short of its goal, jev decides whether to nudge it to keep going",
-   "p": false
-  },
-  {
-   "n": "claude-code-context-debloat-mod",
-   "d": "Single-file Claude Code mod that trims the base context a new session sends (highly experimental)",
-   "p": false
-  },
-  {
-   "n": "hf-top-models",
-   "d": "The 300 most-liked Hugging Face models of the last year in a sortable table and charts",
-   "p": true
-  },
-  {
-   "n": "hf-top-datasets",
-   "d": "The most-liked datasets on Hugging Face in a sortable table",
-   "p": true
-  }
- ],
- "Experiments": [
-  {
-   "n": "fasterfly",
-   "d": "Event-driven Triton LIF kernels for the full MaleCNS fly connectome: 4.9x faster than torch.sparse, 72x batched",
-   "p": false
-  },
-  {
-   "n": "land-or-water",
-   "d": "What does a language model think the Earth looks like?",
-   "p": false
-  },
-  {
-   "n": "qwen-dictionary",
-   "d": "A dictionary of the English language written (and illustrated) by Qwen 3.5 0.8B",
-   "p": true
-  },
-  {
-   "n": "cutoff-bench",
-   "d": "Ask LLMs their knowledge cutoff, then compare it with the newest model they actually remember",
-   "p": true
-  },
-  {
-   "n": "3d-model-weights",
-   "d": "The weight matrices of the most-liked Hugging Face models, in 3D",
-   "p": true
-  },
-  {
-   "n": "toy-local-multi-agent-swarm",
-   "d": "Experiment: Watch a swarm of LLM agents run on your own machine, explore different swarm topologies, and nudge or redirect any agent in real time.",
-   "p": false
-  },
-  {
-   "n": "jev-attack-surface-analysis",
-   "d": "PoC/Reference: Attack surface heatmap of a Python or JS Ts codebase, ranked top-down by the jev classifier on a fixed budget",
-   "p": true
-  }
- ],
- "Articles": [
-  {
-   "n": "open-swarm-security",
-   "d": "Interactive article on keeping swarms of parallel LLM agents in scope: UX, architecture, threat model, controls",
-   "p": true
-  },
-  {
-   "n": "emulacion-integral-del-cerebro",
-   "d": "Traducción al español de Whole Brain Emulation: A Roadmap, de Anders Sandberg y Nick Bostrom",
-   "p": false
-  },
-  {
-   "n": "vestidito",
-   "d": "Learn to draft a dress base pattern: flat pattern + 3D dress form with skirt drape (three.js)",
-   "p": true
-  },
-  {
-   "n": "learn-synth",
-   "d": "Learn synth fundamentals by listening and exploring interactive controls",
-   "p": true
-  }
- ]
-};
-for (const [cat, items] of Object.entries(DATA)) {
-  const h = document.createElement("h2"); h.textContent = cat;
-  const ul = document.createElement("ul");
-  items.forEach((r, i) => {
-    const li = document.createElement("li");
-    const code = `https://github.com/${USER}/${r.n}`;
-    const url = r.p ? `https://${USER}.github.io/${r.n}/` : code;
-    li.innerHTML = `<a href="${url}">${r.n}</a>${r.p ? `<a class="c" href="${code}">code</a>` : ""}<div class="d">${r.d}</div>`;
-    if (i >= SHOWN) li.hidden = true;
-    ul.append(li);
-  });
-  main.append(h, ul);
-  if (items.length > SHOWN) {
-    const b = document.createElement("button");
-    b.textContent = `view ${items.length - SHOWN} more`;
-    b.onclick = () => { ul.querySelectorAll("li[hidden]").forEach(li => li.hidden = false); b.remove(); };
-    main.append(b);
-  }
-}
-</script>
+</head>
+<body>
+<header>
+<h1>Francisco Carlos Erra</h1>
+<p>Games, tools, experiments and articles. <a href="https://github.com/franciscocarloserra">GitHub</a></p>
+</header>
+<main>
+<section id="tools">
+<h2>Tools</h2>
+<ul>
+<li><h3><a href="https://github.com/franciscocarloserra/ttslibre">ttslibre</a></h3><p>Small, fast, free: an open recipe for a sub-100M TTS. Code, data, weights. The PoC trained to a working model in a few hours on one RTX 3090, and inspired a wave of open-weights TTS releases.</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/kokoro-voicelab">kokoro-voicelab</a></h3><p>17 new voices for Kokoro-82M TTS + 269 labeled knobs and a one-click lab to make your own. No retraining, no GPU.</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/supertonic-voicelab">supertonic-voicelab</a></h3><p>40 new voices for Supertonic-3 TTS + labeled, bounded sliders to make your own. No retraining, no GPU.</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/agent-voice-kit">agent-voice-kit</a></h3><p>A local Whisper and Supertonic loop to talk with your agents</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/mp3tomidi/">mp3tomidi</a></h3> <a class="c" href="https://github.com/franciscocarloserra/mp3tomidi">code</a><p>Audio in, MIDI out. MuScriptor + htdemucs in a web panel.</p></li>
+</ul>
+<details><summary>view 8 more</summary>
+<ul>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-filedrop/">p2p-filedrop</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-filedrop">code</a><p>Send files and chat directly between browsers, using a link</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-call/">p2p-call</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-call">code</a><p>Like meets/zoom but browser-to-browser p2p in a couple of files</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-board/">p2p-board</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-board">code</a><p>An ultraminimal trystero browser-based p2p chat</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/claude-code-multiharness-delegation">claude-code-multiharness-delegation</a></h3><p>Claude Code mod: delegate subtasks to Codex, Antigravity, opencode or a local model, each running interactively in tmux</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/claude-code-autonudge">claude-code-autonudge</a></h3><p>Claude Code plugin: when the agent idles short of its goal, jev decides whether to nudge it to keep going</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/claude-code-context-debloat-mod">claude-code-context-debloat-mod</a></h3><p>Single-file Claude Code mod that trims the base context a new session sends (highly experimental)</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/hf-top-models/">hf-top-models</a></h3> <a class="c" href="https://github.com/franciscocarloserra/hf-top-models">code</a><p>The 300 most-liked Hugging Face models of the last year in a sortable table and charts</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/hf-top-datasets/">hf-top-datasets</a></h3> <a class="c" href="https://github.com/franciscocarloserra/hf-top-datasets">code</a><p>The most-liked datasets on Hugging Face in a sortable table</p></li>
+</ul>
+</details>
+</section>
+<section id="experiments">
+<h2>Experiments</h2>
+<ul>
+<li><h3><a href="https://github.com/franciscocarloserra/fasterfly">fasterfly</a></h3><p>Event-driven Triton LIF kernels for the full MaleCNS fly connectome: 4.9x faster than torch.sparse, 72x batched</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/land-or-water">land-or-water</a></h3><p>What does a language model think the Earth looks like?</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/qwen-dictionary/">qwen-dictionary</a></h3> <a class="c" href="https://github.com/franciscocarloserra/qwen-dictionary">code</a><p>A dictionary of the English language written (and illustrated) by Qwen 3.5 0.8B</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/cutoff-bench/">cutoff-bench</a></h3> <a class="c" href="https://github.com/franciscocarloserra/cutoff-bench">code</a><p>Ask LLMs their knowledge cutoff, then compare it with the newest model they actually remember</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/3d-model-weights/">3d-model-weights</a></h3> <a class="c" href="https://github.com/franciscocarloserra/3d-model-weights">code</a><p>The weight matrices of the most-liked Hugging Face models, in 3D</p></li>
+</ul>
+<details><summary>view 2 more</summary>
+<ul>
+<li><h3><a href="https://github.com/franciscocarloserra/toy-local-multi-agent-swarm">toy-local-multi-agent-swarm</a></h3><p>Experiment: Watch a swarm of LLM agents run on your own machine, explore different swarm topologies, and nudge or redirect any agent in real time.</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/jev-attack-surface-analysis/">jev-attack-surface-analysis</a></h3> <a class="c" href="https://github.com/franciscocarloserra/jev-attack-surface-analysis">code</a><p>PoC/Reference: Attack surface heatmap of a Python or JS Ts codebase, ranked top-down by the jev classifier on a fixed budget</p></li>
+</ul>
+</details>
+</section>
+<section id="games">
+<h2>Games</h2>
+<ul>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-go/">p2p-go</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-go">code</a><p>Go for two (7x7 to 19x19) or vs bot, browser to browser over WebRTC. No server.</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-burako/">p2p-burako</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-burako">code</a><p>Two-player (or 2v2 with bots) tile Burako, browser to browser over WebRTC. No server.</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/p2p-mancala/">p2p-mancala</a></h3> <a class="c" href="https://github.com/franciscocarloserra/p2p-mancala">code</a><p>Two-player Mancala, browser to browser over WebRTC. No server.</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/pelican-bmx/">pelican-bmx</a></h3> <a class="c" href="https://github.com/franciscocarloserra/pelican-bmx">code</a><p>The &quot;pelican riding a bicycle&quot; benchmark taken way too literally: ride a 3D BMX park, do tailwhips and grind rails (three.js)</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/llm-sandbox">llm-sandbox</a></h3><p>Talk to a tiny sassy robot and she builds your voxel world. Fully local: Gemma 4 + Whisper + Supertonic.</p></li>
+</ul>
+<details><summary>view 2 more</summary>
+<ul>
+<li><h3><a href="https://franciscocarloserra.github.io/defensa-1807/">defensa-1807</a></h3> <a class="c" href="https://github.com/franciscocarloserra/defensa-1807">code</a><p>Prototipo de estrategia por turnos: Defensa de Buenos Aires, 1807</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/asciiplanet/">asciiplanet</a></h3> <a class="c" href="https://github.com/franciscocarloserra/asciiplanet">code</a><p>A weird anonymous ASCII-based 3D Planet chat [SERVER IS DOWN]</p></li>
+</ul>
+</details>
+</section>
+<section id="articles">
+<h2>Articles</h2>
+<ul>
+<li><h3><a href="https://franciscocarloserra.github.io/open-swarm-security/">open-swarm-security</a></h3> <a class="c" href="https://github.com/franciscocarloserra/open-swarm-security">code</a><p>Interactive article on keeping swarms of parallel LLM agents in scope: UX, architecture, threat model, controls</p></li>
+<li><h3><a href="https://github.com/franciscocarloserra/emulacion-integral-del-cerebro">emulacion-integral-del-cerebro</a></h3><p>Traducción al español de Whole Brain Emulation: A Roadmap, de Anders Sandberg y Nick Bostrom</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/vestidito/">vestidito</a></h3> <a class="c" href="https://github.com/franciscocarloserra/vestidito">code</a><p>Learn to draft a dress base pattern: flat pattern + 3D dress form with skirt drape (three.js)</p></li>
+<li><h3><a href="https://franciscocarloserra.github.io/learn-synth/">learn-synth</a></h3> <a class="c" href="https://github.com/franciscocarloserra/learn-synth">code</a><p>Learn synth fundamentals by listening and exploring interactive controls</p></li>
+</ul>
+</section>
+</main>
+</body>
 </html>
