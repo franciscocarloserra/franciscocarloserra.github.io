@@ -67,6 +67,7 @@ Agentic AI is moving from single assistants to fleets of agents with tools, budg
 - LinkedIn: https://www.linkedin.com/in/francisco-carlos-erra/
 - X: https://x.com/francarloerra
 - OpenTokenMini: https://opentokenmini.org/
+- Contact form: https://forms.gle/aCDuwqTeNF1VCKSg6
 
 ## Tools
 
