@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {"namespace": "android_app", "package_name": "io.github.franciscocarloserra.burako",
+    "sha256_cert_fingerprints": ["82:A6:71:FF:DB:86:99:A1:D3:04:BF:27:29:F0:2D:55:00:88:A1:12:B2:01:E5:B8:AD:96:D1:DB:85:A4:37:97"]}
+}]
